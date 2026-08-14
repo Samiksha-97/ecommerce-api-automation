@@ -1,363 +1,955 @@
-🚀 Project Problem Statement
-Project: E-Commerce Order & Customer Management API Automation Framework
+================================================================================
+              E-COMMERCE API AUTOMATION FRAMEWORK
+================================================================================
 
-Domain: E-Commerce / Retail
+Project       : E-Commerce Order & Customer Management API Automation Framework
+Domain        : E-Commerce / Retail
+Language      : Java 21
+Automation    : Rest Assured
+Test Framework: TestNG
+Build Tool    : Maven
+Version Control: Git / GitHub
 
-We will build an automated API testing framework for an E-Commerce Order Management System.
+GitHub Repository:
+https://github.com/Samiksha-97/ecommerce-api-automation
 
-The application exposes REST APIs that allow customers and administrators to:
 
-Register and manage customers
-Authenticate users
-Browse products
-Create orders
-Retrieve order details
-Update orders
-Cancel orders
-Manage customer information
-Validate order/payment-related information
-Handle invalid requests and authorization failures
-Business Problem
+================================================================================
+1. PROJECT OVERVIEW
+================================================================================
 
-In an e-commerce application, APIs are responsible for critical operations such as customer authentication, product management, order creation, order updates, and order cancellation.
+This project is a Java-based REST API automation framework developed using
+Rest Assured, TestNG, Maven, and Jackson.
 
-Manually validating these APIs for every release is time-consuming and increases the possibility of missing defects.
+The framework is designed to automate and validate REST APIs for an
+E-Commerce application.
 
-The objective of this project is to develop a reusable API automation framework using Rest Assured and Java that automatically validates the application's REST APIs for:
+The main objective of this project is to provide a reusable, maintainable,
+and scalable API automation framework that can be used for functional,
+positive, negative, CRUD, business validation, workflow, and regression
+testing.
 
-Functional correctness
-HTTP status codes
-Response body and schema
-Headers
-Authentication/authorization
-Request/response data
-Positive and negative scenarios
-CRUD operations
-Business validations
-Regression testing
+The framework validates:
 
-The framework will then be integrated with GitHub and Jenkins so that API regression tests can be executed automatically whenever new code is pushed or through a Jenkins pipeline.
+- HTTP status codes
+- Response body
+- JSON fields
+- JSONPath expressions
+- Response content type
+- Request payloads
+- Request headers
+- Dynamic response data
+- Positive scenarios
+- Negative scenarios
+- CRUD operations
+- Business validations
+- API workflows
+- Regression scenarios
 
-🎯 What We Will Build
 
-Our final framework will look approximately like this:
+================================================================================
+2. BUSINESS PROBLEM
+================================================================================
 
-                ┌─────────────────────┐
-                │   E-Commerce APIs   │
-                └──────────┬──────────┘
-                           │
-                           ▼
-                ┌─────────────────────┐
-                │   Rest Assured      │
-                │   API Automation    │
-                └──────────┬──────────┘
-                           │
-            ┌──────────────┼──────────────┐
-            ▼              ▼              ▼
-        TestNG          Java          Maven
-            │              │              │
-            └──────────────┼──────────────┘
-                           ▼
-                 Automation Framework
-                           │
-                 ┌─────────┴─────────┐
-                 ▼                   ▼
-              GitHub              Jenkins
-                                     │
-                                     ▼
-                              CI/CD Execution
-                                     │
-                                     ▼
-                              Test Reports
-🧩 APIs We Will Automate
+In an E-Commerce application, APIs are responsible for important operations
+such as:
 
-We'll structure the project around realistic API modules.
+- User authentication
+- Customer/user management
+- Product management
+- Order/cart management
+- Order creation
+- Order updates
+- Order retrieval
+- Negative and invalid request handling
+
+Manually validating these APIs for every release is time-consuming and can
+result in defects being missed.
+
+This automation framework reduces manual validation effort by automatically
+executing API regression tests and validating the expected behavior of the
+application.
+
+
+================================================================================
+3. PROJECT OBJECTIVES
+================================================================================
+
+The major objectives of this framework are:
+
+1. Automate REST API functional testing.
+2. Validate positive and negative API scenarios.
+3. Automate CRUD operations.
+4. Validate request and response data.
+5. Validate HTTP status codes and response content.
+6. Create reusable API classes.
+7. Centralize common Rest Assured configuration.
+8. Externalize environment configuration.
+9. Use POJO/model classes for request payloads.
+10. Organize tests using TestNG.
+11. Execute the complete regression suite using Maven.
+12. Maintain the project using Git and GitHub.
+13. Provide a framework structure that can be extended for CI/CD.
+
+
+================================================================================
+4. TECHNOLOGY STACK
+================================================================================
+
+Technology              Purpose
+--------------------------------------------------------------------------------
+Java 21                  Programming language
+Rest Assured 5.5.6      REST API automation
+TestNG 7.11.0           Test execution and assertions
+Maven                   Build and dependency management
+Jackson 2.19.2          JSON serialization/deserialization
+Hamcrest                Response assertions
+Git                     Version control
+GitHub                  Source-code repository
+Eclipse                 Development environment
+Postman                 API exploration/manual validation
+
+
+================================================================================
+5. APPLICATION API MODULES
+================================================================================
+
+The framework is organized into the following major API modules:
 
 1. Authentication
-POST /login
-POST /refresh-token
+2. Product Management
+3. User Management
+4. Order/Cart Management
+5. Negative Testing
+6. Workflow Testing
+7. Payment-related testing structure
 
-We'll cover:
 
-Valid login
-Invalid username
-Invalid password
-Missing credentials
-Token generation
-Unauthorized access
-Token validation
-2. Customer Management
-POST   /customers
-GET    /customers/{id}
-PUT    /customers/{id}
-DELETE /customers/{id}
-GET    /customers
+================================================================================
+6. AUTHENTICATION API
+================================================================================
 
-We'll implement complete CRUD automation.
+Authentication functionality is implemented through AuthApi.java.
 
-3. Product Management
+The authentication module is responsible for handling authentication-related
+API operations and validating authentication responses.
+
+The framework structure allows authentication functionality to be reused by
+other API modules when required.
+
+
+================================================================================
+7. PRODUCT API AUTOMATION
+================================================================================
+
+The Product API module automates CRUD operations for products.
+
+API operations include:
+
 GET    /products
 GET    /products/{id}
 POST   /products
 PUT    /products/{id}
 DELETE /products/{id}
 
-We'll validate:
 
-Product availability
-Product ID
-Price
-Category
-Invalid product IDs
-Required fields
-4. Order Management ⭐
+Product scenarios include:
 
-This will be the main business module.
+- Retrieve all products
+- Retrieve product by ID
+- Create a product
+- Update a product
+- Delete a product
+- Validate product ID
+- Validate product title
+- Validate product price
+- Validate product category
+- Validate product rating
+- Validate product rating count
+- Validate invalid product scenarios
 
-POST   /orders
-GET    /orders/{orderId}
-GET    /orders
-PUT    /orders/{orderId}
-DELETE /orders/{orderId}
 
-Example business flow:
+Product-related classes include:
 
-Login
-  ↓
-Get Authentication Token
-  ↓
-Get Product
-  ↓
-Create Customer
-  ↓
+ProductApi.java
+ProductAPITest.java
+ProductRequest.java
+ProductTestData.java
+
+
+================================================================================
+8. USER API AUTOMATION
+================================================================================
+
+The User API module automates complete CRUD operations.
+
+API operations include:
+
+GET    /users
+GET    /users/{id}
+POST   /users
+PUT    /users/{id}
+DELETE /users/{id}
+
+
+User scenarios include:
+
+- Retrieve all users
+- Retrieve user by ID
+- Create user
+- Update user
+- Delete user
+- Validate user ID
+- Validate username
+- Validate email
+- Validate password
+- Validate response content type
+- Validate HTTP status codes
+
+
+User-related classes include:
+
+UserApi.java
+UserApiTest.java
+UserRequest.java
+UserTestData.java
+
+
+================================================================================
+9. ORDER / CART API AUTOMATION
+================================================================================
+
+Order management is one of the major business modules of this framework.
+
+The framework automates order/cart-related operations.
+
+API operations include:
+
+GET    /carts
+GET    /carts/{id}
+POST   /carts/add
+PUT    /carts/{id}
+
+
+Order scenarios include:
+
+- Retrieve all orders/carts
+- Retrieve order by ID
+- Create order
+- Update order
+- Verify created order
+- Validate order response
+- Validate invalid order ID
+- Validate invalid user ID
+- Validate invalid quantity
+- Validate business rules
+
+
+Order-related classes include:
+
+OrderApi.java
+OrderApiTest.java
+OrderNegativeTest.java
+OrderRequest.java
+OrderProduct.java
+OrderTestData.java
+OrderBusinessValidator.java
+
+
+================================================================================
+10. NEGATIVE TESTING
+================================================================================
+
+Negative testing is implemented to validate how the API/framework behaves when
+invalid data or invalid business conditions are provided.
+
+Examples include:
+
+- Invalid order ID
+- Invalid user ID
+- Invalid quantity
+- Invalid request scenarios
+- Business validation failures
+
+
+Example business rule:
+
+Product quantity must be greater than zero.
+
+
+The framework also recognizes limitations of mock APIs where an API may accept
+data that would normally be rejected by a real production application.
+
+In such cases, business validation is handled separately using reusable
+business validation utilities.
+
+
+================================================================================
+11. API WORKFLOW TESTING
+================================================================================
+
+The framework supports workflow-oriented API testing.
+
+A business workflow can contain multiple dependent API operations.
+
+Example:
+
+Authenticate
+     |
+     v
+Retrieve Product
+     |
+     v
 Create Order
-  ↓
-Get Order
-  ↓
+     |
+     v
+Verify Order
+     |
+     v
 Update Order
-  ↓
-Cancel Order
 
-This gives us a proper end-to-end API workflow, rather than testing every API independently.
 
-🧪 Testing We Will Implement
+Workflow testing validates that related API operations work together instead
+of validating every endpoint only as an isolated operation.
 
-This is where the project becomes resume-worthy.
 
-Positive Testing
-Valid Login
-Valid Customer Creation
-Valid Product Retrieval
-Valid Order Creation
-Valid Order Update
-Valid Order Cancellation
-Negative Testing
-Invalid Login
-Missing Required Fields
-Invalid Customer ID
-Invalid Product ID
-Invalid Order ID
-Unauthorized Request
-Invalid Token
-Invalid Request Payload
-Duplicate Customer
-Response Validation
+================================================================================
+12. API RESPONSE VALIDATION
+================================================================================
 
-We'll validate:
+The framework performs multiple levels of response validation.
 
-Status Code
-Response Body
-Response Headers
-Response Time
-JSON Fields
-JSON Path
-Content-Type
-🏗️ Framework Features
+------------------------------
+GET REQUEST VALIDATIONS
+------------------------------
 
-Instead of putting everything inside one test class, we'll progressively build a proper framework.
+GET APIs validate:
 
-Eventually we'll have something similar to:
+- HTTP status code
+- Response body
+- Response content type
+- Response time
+- JSON fields
+- JSONPath values
+- Mandatory fields
+- Collection size where applicable
 
-RestAssured-API-Automation
-│
-├── src
-│   ├── main
-│   │   └── java
-│   │       ├── base
-│   │       ├── config
-│   │       ├── constants
-│   │       ├── endpoints
-│   │       ├── payloads
-│   │       ├── pojo
-│   │       ├── utils
-│   │       └── api5
-│   │
-│   └── test
-│       ├── java
-│       │   ├── tests
-│       │   └── listeners
-│       │
-│       └── resources
-│           ├── testdata
-│           └── config
-│
-├── pom.xml
-├── testng.xml
-├── README.md
-└── Jenkinsfile
 
-But we will NOT create all of this now.
+Example:
 
-We'll build it gradually so you understand why every folder/class exists.
+response.then()
+        .statusCode(200)
+        .contentType("application/json; charset=utf-8")
+        .body("id", notNullValue());
 
-🔥 Technologies We'll Use
 
-Our target stack:
+------------------------------
+POST REQUEST VALIDATIONS
+------------------------------
 
-Technology	Purpose
-Java	Programming language
-Rest Assured	API automation
-TestNG	Test execution
-Maven	Build/dependency management
-JSON	Request/response
-POJO	Request/response serialization
-Jackson/Gson	JSON mapping
-Git	Version control
-GitHub	Source-code repository
-Jenkins	CI/CD
-Allure/Extent	Reporting
-Postman	API exploration/manual validation
+POST APIs validate:
 
-And we'll also use concepts like:
+- Request body
+- Request headers
+- JSON payload
+- HTTP status code
+- Response body
+- Response content type
+- Dynamic response data
+- Created resource information
 
-Serialization
-Deserialization
-Request Specification
-Response Specification
-JSONPath
-Hamcrest
-Parameterization
-Data-driven testing
-Environment configuration
-Authentication handling
-Reusable methods
-API chaining
-Logging
-Test listeners
-Failure handling
-📅 How We'll Work Together
 
-I won't give you the entire project in one shot.
+Example:
 
-We'll treat this like an actual project development.
+response.then()
+        .statusCode(201)
+        .body("id", notNullValue())
+        .body("title", equalTo(expectedTitle));
 
-Day 1
 
-Project setup + API selection
+------------------------------
+PUT REQUEST VALIDATIONS
+------------------------------
 
-Day 2
+PUT APIs validate:
 
-Maven + Rest Assured configuration
+- Resource ID
+- Updated request data
+- HTTP status code
+- Updated response fields
+- Response content type
 
-Day 3
 
-First GET API automation
+------------------------------
+DELETE REQUEST VALIDATIONS
+------------------------------
 
-Day 4
+DELETE APIs validate:
 
-POST API + request payload
+- HTTP status code
+- Successful deletion response
 
-Day 5
 
-PUT + DELETE
+================================================================================
+13. FRAMEWORK ARCHITECTURE
+================================================================================
 
-Day 6
+The framework follows a layered and reusable architecture.
 
-Response validation
+High-level structure:
 
-Day 7
+                    E-COMMERCE APIs
+                           |
+                           v
+                    REST ASSURED
+                           |
+              +------------+------------+
+              |            |            |
+              v            v            v
+           API Layer    Test Layer   Config Layer
+              |            |            |
+              +------------+------------+
+                           |
+                           v
+                         TESTNG
+                           |
+                           v
+                         MAVEN
+                           |
+                           v
+                    REGRESSION SUITE
+                           |
+                           v
+                       GIT / GITHUB
 
-Reusable Request/Response specifications
 
-Day 8
+The API layer contains reusable API operations.
 
-POJO serialization/deserialization
+The test layer contains TestNG test cases and validations.
 
-Day 9
+The configuration layer contains environment and request specification
+configuration.
 
-Authentication/token handling
+Maven is used to build and execute the complete test suite.
 
-Day 10
 
-API chaining / end-to-end business flow
+================================================================================
+14. BASE API DESIGN
+================================================================================
 
-Day 11
+BaseApi.java provides common request functionality to all API classes.
 
-Positive + negative test suite
+Example:
 
-Day 12
+protected RequestSpecification request() {
+    return given()
+            .spec(requestSpec);
+}
 
-Data-driven testing
 
-Day 13
+API classes extend BaseApi so that common request configuration does not need
+to be duplicated.
 
-Configuration/environment management
+Architecture:
 
-Day 14
+                    BaseApi
+                       |
+          +------------+------------+
+          |            |            |
+          v            v            v
+       AuthApi     ProductApi    UserApi
+                                    |
+                                    v
+                                OrderApi
 
-Logging + reusable utilities
 
-Day 15
+Benefits:
 
-TestNG suite + listeners
+- Reusable request specification
+- Less duplicate code
+- Cleaner API classes
+- Easier maintenance
+- Consistent API configuration
 
-Day 16
 
-Reports
+================================================================================
+15. REQUEST SPECIFICATION
+================================================================================
 
-Day 17
+RequestSpecFactory.java is responsible for creating the default Rest Assured
+RequestSpecification.
 
-Git/GitHub repository
+Default configuration includes:
 
-Day 18
+- Accept: application/json
+- Content-Type: application/json
 
-Jenkins setup
 
-Day 19
+Example:
 
-Jenkins pipeline + Maven execution
+RestAssured
+        .given()
+        .accept("application/json")
+        .contentType("application/json");
 
-Day 20
 
-CI/CD + final framework cleanup
+This configuration is created once and reused by the framework.
 
-Final
 
-README + project documentation + resume project description + interview questions based specifically on our framework
+================================================================================
+16. BASE TEST
+================================================================================
 
-We'll adjust the number of days based on how quickly you complete each session.
+BaseTest.java provides common test setup.
 
-💼 Most Important: Resume Value
+It:
 
-Once completed, we can describe it along these lines:
+1. Loads the base URL.
+2. Creates the default RequestSpecification.
+3. Makes the RequestSpecification available to test classes.
+
+
+The test classes extend BaseTest.
+
+Example structure:
+
+BaseTest
+   |
+   +-- ProductAPITest
+   |
+   +-- UserApiTest
+   |
+   +-- OrderApiTest
+   |
+   +-- Authentication Tests
+   |
+   +-- Negative Tests
+   |
+   +-- Workflow Tests
+
+
+================================================================================
+17. CONFIGURATION MANAGEMENT
+================================================================================
+
+The framework uses external configuration instead of hardcoding the base URL
+inside individual API classes.
+
+Configuration flow:
+
+config.properties
+       |
+       v
+ConfigManager.java
+       |
+       v
+Environment.java
+       |
+       v
+BaseTest.java
+       |
+       v
+RequestSpecification
+
+
+ConfigManager.java loads values from config.properties.
+
+Environment.java exposes the required environment configuration.
+
+This approach makes it easier to maintain and extend the framework for
+different environments in the future.
+
+
+================================================================================
+18. POJO / MODEL CLASSES
+================================================================================
+
+The framework uses Java model classes to represent API request payloads.
+
+Examples:
+
+ProductRequest
+UserRequest
+OrderRequest
+OrderProduct
+
+
+Benefits:
+
+- Cleaner request construction
+- Strongly typed request data
+- Better maintainability
+- Easier serialization/deserialization
+- Avoids large hardcoded JSON strings in test classes
+
+
+Example:
+
+ProductRequest productRequest = new ProductRequest();
+
+productRequest.setTitle("Automation Testing Product");
+productRequest.setPrice(599.99);
+productRequest.setDescription("Product created using API automation");
+
+
+The object is then passed to the API layer.
+
+
+================================================================================
+19. ENDPOINT MANAGEMENT
+================================================================================
+
+All API endpoint paths are maintained centrally in:
+
+Endpoints.java
+
+
+Examples:
+
+PRODUCTS       = "/products"
+PRODUCT_BY_ID  = "/products/{id}"
+
+USERS          = "/users"
+USER_BY_ID     = "/users/{id}"
+
+CARTS          = "/carts"
+CART_BY_ID     = "/carts/{id}"
+
+
+Benefits:
+
+- No hardcoded endpoints in test methods
+- Centralized endpoint maintenance
+- Reduced duplication
+- Cleaner API classes
+- Easier endpoint changes
+
+
+================================================================================
+20. TEST DATA MANAGEMENT
+================================================================================
+
+Test data is maintained separately from test implementation.
+
+Examples:
+
+ProductTestData.java
+UserTestData.java
+OrderTestData.java
+
+
+This approach keeps test classes focused on test logic and validation rather
+than storing all test data directly inside the test methods.
+
+
+================================================================================
+21. TESTNG TEST SUITE
+================================================================================
+
+The project uses TestNG for test execution.
+
+The central suite is:
+
+testng.xml
+
+
+The suite organizes different API test packages, including:
+
+- Authentication Tests
+- Product Tests
+- User Tests
+- Order Tests
+- Negative Tests
+- Payment Tests
+- Workflow Tests
+- Smoke Tests
+
+
+This provides a centralized way to execute the regression suite.
+
+
+================================================================================
+22. MAVEN EXECUTION
+================================================================================
+
+The complete test suite can be executed using Maven.
+
+Open Command Prompt in the project root directory:
+
+Z:\java selenium projects\ecommerce-api-automation
+
+
+Run:
+
+mvn clean test
+
+
+Maven will:
+
+1. Clean previous build output.
+2. Compile the project.
+3. Execute the configured TestNG suite.
+4. Run all automated test cases.
+5. Generate the test execution result.
+
+
+================================================================================
+23. CURRENT TEST EXECUTION RESULT
+================================================================================
+
+The current automation framework contains 24 automated test cases.
+
+Latest successful Maven execution:
+
+Tests run : 24
+Failures  : 0
+Errors    : 0
+Skipped   : 0
+
+BUILD SUCCESS
+
+
+This confirms that the complete TestNG regression suite executes successfully
+through Maven.
+
+
+================================================================================
+24. GIT VERSION CONTROL
+================================================================================
+
+Git is used for source-code version control.
+
+The project has been initialized as a Git repository and uses the main branch.
+
+GitHub Repository:
+
+https://github.com/Samiksha-97/ecommerce-api-automation
+
+
+The project contains a .gitignore file to exclude generated and IDE-specific
+files.
+
+Ignored files/folders include:
+
+target/
+test-output/
+.classpath
+.project
+.settings/
+.idea/
+*.iml
+
+
+This keeps generated build files and IDE metadata out of the Git repository.
+
+
+================================================================================
+25. HOW TO CLONE THE PROJECT
+================================================================================
+
+Clone the repository using:
+
+git clone https://github.com/Samiksha-97/ecommerce-api-automation.git
+
+
+Navigate to the project:
+
+cd ecommerce-api-automation
+
+
+================================================================================
+26. HOW TO RUN THE PROJECT
+================================================================================
+
+Prerequisites:
+
+- Java 21
+- Maven
+- Git
+- Eclipse or another Java IDE
+
+
+Verify Java:
+
+java -version
+
+
+Verify Maven:
+
+mvn -version
+
+
+Verify Git:
+
+git --version
+
+
+Run the complete regression suite:
+
+mvn clean test
+
+
+Expected result:
+
+Tests run: 24
+Failures: 0
+Errors: 0
+Skipped: 0
+
+BUILD SUCCESS
+
+
+================================================================================
+27. CURRENT FRAMEWORK FEATURES
+================================================================================
+
+The framework currently demonstrates:
+
+- REST API automation
+- Rest Assured
+- Java
+- TestNG
+- Maven
+- CRUD API automation
+- Positive testing
+- Negative testing
+- Business-rule validation
+- API workflow testing
+- Request validation
+- Response validation
+- HTTP status validation
+- JSONPath validation
+- Hamcrest assertions
+- Content-Type validation
+- Request headers
+- Dynamic response data validation
+- POJO request models
+- Serialization/deserialization
+- Reusable API classes
+- Base API layer
+- Centralized endpoints
+- Centralized test data
+- Centralized request specification
+- Environment configuration
+- Configuration management
+- Logging
+- TestNG suite execution
+- Maven regression execution
+- Git version control
+- GitHub repository
+
+
+================================================================================
+28. FUTURE ENHANCEMENTS
+================================================================================
+
+The framework can be further enhanced with:
+
+1. Jenkins CI/CD pipeline
+2. Automated GitHub-to-Jenkins execution
+3. Advanced HTML reporting
+4. Allure or Extent Reports
+5. Data-driven testing
+6. Multiple environment support
+7. Environment-specific configuration
+8. Authentication token management
+9. Advanced API chaining
+10. Test listeners
+11. Retry mechanism
+12. Parallel execution
+13. Automated report publishing
+14. Pipeline notifications
+
+
+================================================================================
+29. RESUME PROJECT DESCRIPTION
+================================================================================
 
 E-Commerce API Automation Framework
 
-Developed a scalable API automation framework using Java, Rest Assured, TestNG, and Maven to automate functional, positive, negative, authentication, CRUD, and end-to-end API scenarios for an e-commerce order management system. Implemented reusable request/response specifications, POJO-based serialization/deserialization, API chaining, data-driven testing, response validations, logging, and reporting. Integrated the framework with GitHub and Jenkins to enable automated CI/CD-based regression execution.
+Developed a reusable REST API automation framework using Java, Rest Assured,
+TestNG, and Maven to automate functional, positive, negative, CRUD, business
+validation, and workflow scenarios for an e-commerce application. Implemented
+reusable API layers, centralized request specifications, endpoint management,
+externalized environment configuration, POJO-based request models,
+JSONPath-based response validation, HTTP status and content-type validation,
+logging, and Maven-based TestNG regression execution. Integrated the project
+with Git and GitHub for source-code version control.
 
-We'll refine this after we actually build the project, so every statement on your resume corresponds to something you can confidently explain in an interview.
 
---------------------------------------------------------------------------------------------------------------------------------------------------
-validation parameters:
-GET request- 
-Status code
-Response body
-Response type
-Response time
+================================================================================
+30. KEY INTERVIEW DISCUSSION POINTS
+================================================================================
 
-POST request-
-Request body
-Headers
-JSON payload
-Response validation
-Dynamic response data
+The following framework concepts can be discussed during technical interviews:
+
+- Why Rest Assured is used for API automation
+- Difference between API and UI automation
+- RequestSpecification
+- Response validation
+- Status code validation
+- JSONPath
+- Hamcrest matchers
+- POJO serialization/deserialization
+- API abstraction
+- BaseApi design
+- RequestSpecFactory
+- Configuration management
+- Environment management
+- Endpoint management
+- Test data management
+- Positive vs negative testing
+- CRUD testing
+- API workflow testing
+- Business-rule validation
+- TestNG annotations
+- TestNG groups
+- Maven lifecycle
+- Git branching
+- Git commits
+- GitHub repository management
+- CI/CD concepts
+- Jenkins integration
+
+
+================================================================================
+31. PROJECT STATUS
+================================================================================
+
+Current implementation status:
+
+API Automation Framework       : COMPLETED
+Product API Automation        : COMPLETED
+User API Automation           : COMPLETED
+Order API Automation          : COMPLETED
+Authentication Automation     : COMPLETED
+Negative Testing              : COMPLETED
+Workflow Testing              : COMPLETED
+Base API Architecture         : COMPLETED
+Request Specification         : COMPLETED
+Configuration Management      : COMPLETED
+TestNG Suite                  : COMPLETED
+Maven Execution               : COMPLETED
+Git Version Control            : COMPLETED
+GitHub Repository             : COMPLETED
+
+Current Regression Result:
+
+24 / 24 TEST CASES PASSED
+
+
+Jenkins CI/CD integration and advanced reporting are planned as future
+enhancements.
+
+
+================================================================================
+32. AUTHOR
+================================================================================
+
+Name   : Samiksha
+GitHub : https://github.com/Samiksha-97
+
+
+================================================================================
+                         END OF README
+================================================================================
