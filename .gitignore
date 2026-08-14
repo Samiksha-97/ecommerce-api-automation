@@ -1,0 +1,14 @@
+# Maven build output
+target/
+
+# TestNG output
+test-output/
+
+# Eclipse files
+.classpath
+.project
+.settings/
+
+# IDE files
+.idea/
+*.iml
