@@ -16,6 +16,7 @@
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <allure.version>2.35.3</allure.version>
     </properties>
 
     <dependencies>
@@ -35,6 +36,12 @@
             <scope>test</scope>
         </dependency>
         
+        <dependency>
+		    <groupId>io.qameta.allure</groupId>
+		    <artifactId>allure-testng</artifactId>
+		    <scope>test</scope>
+		</dependency>
+        
        <dependency>
 		    <groupId>com.fasterxml.jackson.core</groupId>
 		    <artifactId>jackson-databind</artifactId>
@@ -42,6 +49,17 @@
 		</dependency>
 
     </dependencies>
+	    <dependencyManagement>
+	    <dependencies>
+	        <dependency>
+	            <groupId>io.qameta.allure</groupId>
+	            <artifactId>allure-bom</artifactId>
+	            <version>${allure.version}</version>
+	            <type>pom</type>
+	            <scope>import</scope>
+	        </dependency>
+	    </dependencies>
+	</dependencyManagement>
     
     <build>
 	    <plugins>

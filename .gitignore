@@ -12,3 +12,6 @@ test-output/
 # IDE files
 .idea/
 *.iml
+
+# Allure test results
+allure-results/
