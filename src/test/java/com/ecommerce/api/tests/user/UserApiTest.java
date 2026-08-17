@@ -1,6 +1,14 @@
 package com.ecommerce.api.tests.user;
 
 import static org.hamcrest.Matchers.equalTo;
+
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
+
 import com.ecommerce.api.utils.ResponseValidator;
 import static org.hamcrest.Matchers.notNullValue;
 
@@ -14,6 +22,8 @@ import com.ecommerce.api.testdata.user.UserTestData;
 
 import io.restassured.response.Response;
 
+@Epic("E-Commerce API")
+@Feature("User Management")
 public class UserApiTest extends BaseTest {
 
     private UserApi userApi;
@@ -23,6 +33,8 @@ public class UserApiTest extends BaseTest {
         userApi = new UserApi(requestSpec);
     }
     
+    @Story("User Management")
+    @Severity(SeverityLevel.CRITICAL)
     @Test(priority = 1)
     public void getAllUsers() {
 
@@ -34,6 +46,8 @@ public class UserApiTest extends BaseTest {
                 .body("size()", notNullValue());
     }
     
+    @Story("User Management")
+    @Severity(SeverityLevel.CRITICAL)
     @Test(priority = 2)
     public void getUserById() {
 
@@ -48,6 +62,8 @@ public class UserApiTest extends BaseTest {
                 .body("email", notNullValue());
     }
     
+    @Story("User Management")
+    @Severity(SeverityLevel.CRITICAL)
     @Test(priority = 3)
     public void createUser() {
 
@@ -65,6 +81,8 @@ public class UserApiTest extends BaseTest {
                 .body("id", notNullValue());
     }
     
+    @Story("User Management")
+    @Severity(SeverityLevel.CRITICAL)
     @Test(priority = 4)
     public void updateUser() {
 
@@ -85,6 +103,8 @@ public class UserApiTest extends BaseTest {
                 .body("password", equalTo(UserTestData.UPDATED_PASSWORD));
     }
     
+    @Story("User Management")
+    @Severity(SeverityLevel.CRITICAL)
     @Test(priority = 5)
     public void deleteUser() {
 

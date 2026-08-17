@@ -1,5 +1,11 @@
 package com.ecommerce.api.tests.order;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
 import static org.hamcrest.Matchers.equalTo;
 import com.ecommerce.api.utils.ResponseValidator;
 import static org.hamcrest.Matchers.notNullValue;
@@ -17,6 +23,9 @@ import com.ecommerce.api.testdata.order.OrderTestData;
 
 import io.restassured.response.Response;
 
+
+@Epic("E-Commerce API")
+@Feature("Order Management")
 public class OrderAPITest extends BaseTest {
 
     private OrderApi orderApi;
@@ -26,6 +35,8 @@ public class OrderAPITest extends BaseTest {
         orderApi = new OrderApi(requestSpec);
     }
     
+    @Story("Order Management")
+    @Severity(SeverityLevel.CRITICAL)
     @Test(priority = 1)
     public void getAllOrders() {
 
@@ -37,6 +48,8 @@ public class OrderAPITest extends BaseTest {
                 .body("carts", notNullValue());
     }
     
+    @Story("Order Management")
+    @Severity(SeverityLevel.CRITICAL)
     @Test(priority = 2)
     public void getOrderById() {
 
@@ -53,6 +66,8 @@ public class OrderAPITest extends BaseTest {
                 .body("totalQuantity", notNullValue());
     }
     
+    @Story("Order Management")
+    @Severity(SeverityLevel.CRITICAL)
     @Test(priority = 3)
     public void createOrder() {
 
@@ -78,6 +93,8 @@ public class OrderAPITest extends BaseTest {
 		        .body("totalQuantity", equalTo(OrderTestData.PRODUCT_QUANTITY));
     }
     
+    @Story("Order Management")
+    @Severity(SeverityLevel.CRITICAL)
     @Test(priority = 4)
     public void updateOrder() {
     	

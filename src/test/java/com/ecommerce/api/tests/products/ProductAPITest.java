@@ -2,6 +2,13 @@ package com.ecommerce.api.tests.products;
 
 import com.ecommerce.api.testdata.ProductTestData;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
+
 import io.restassured.response.Response;
 
 import com.ecommerce.api.api.ProductApi;
@@ -12,11 +19,14 @@ import com.ecommerce.api.utils.ResponseValidator;
 import org.testng.annotations.Test;
 import static org.hamcrest.Matchers.*;
 
-
+@Epic("E-Commerce API")
+@Feature("Product Management")
 public class ProductAPITest extends BaseTest{
 	
 	private ProductApi productApi;
 	
+	@Story("Product Management")
+	@Severity(SeverityLevel.CRITICAL)
 	@Test(priority = 1)
 	public void getAllProducts() {
 
@@ -55,6 +65,8 @@ public class ProductAPITest extends BaseTest{
 	        .body("limit", greaterThan(0));
 	}
 	
+	@Story("Product Management")
+	@Severity(SeverityLevel.CRITICAL)
 	@Test(priority = 2)
 	public void getProductById() {
 
@@ -73,6 +85,8 @@ public class ProductAPITest extends BaseTest{
 	            .body("category", notNullValue());
 	}
 	
+	@Story("Product Management")
+	@Severity(SeverityLevel.CRITICAL)
 	@Test(priority = 3)
 	public void createProduct() {
 
@@ -96,6 +110,8 @@ public class ProductAPITest extends BaseTest{
 	        .body("description", equalTo(ProductTestData.PRODUCT_DESCRIPTION));
 	}
 	
+	@Story("Product Management")
+	@Severity(SeverityLevel.CRITICAL)
 	@Test(priority =4)
 	public void updateProduct() {
 
@@ -121,6 +137,8 @@ public class ProductAPITest extends BaseTest{
 	        .body("category", equalTo(ProductTestData.UPDATED_PRODUCT_CATEGORY));
 	}
 	
+	@Story("Product Management")
+	@Severity(SeverityLevel.CRITICAL)
 	@Test(priority =5)
 	public void deleteProduct() {
 		

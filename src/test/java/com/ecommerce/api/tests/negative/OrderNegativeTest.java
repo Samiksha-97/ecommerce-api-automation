@@ -1,6 +1,13 @@
 package com.ecommerce.api.tests.negative;
 
 import static org.hamcrest.Matchers.notNullValue;
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
+
 import static org.hamcrest.Matchers.equalTo;
 import java.util.*;
 
@@ -20,6 +27,8 @@ import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
+@Epic("E-Commerce API")
+@Feature("Negative Order Management")
 public class OrderNegativeTest extends BaseTest {
 
 	private OrderApi orderApi;
@@ -37,6 +46,8 @@ public class OrderNegativeTest extends BaseTest {
 	    orderApi = new OrderApi(negativeRequestSpec);
 	}
 	
+	@Story("Negative order Management")
+	@Severity(SeverityLevel.CRITICAL)
     @Test
     public void getOrderWithInvalidId() {
 
@@ -55,6 +66,8 @@ public class OrderNegativeTest extends BaseTest {
      * This is a mock API limitation.
      * Business validation is handled separately by OrderBusinessValidator.
      */
+	@Story("Negative order Management")
+	@Severity(SeverityLevel.CRITICAL)
     @Test
     public void createOrderWithInvalidUserId() {
 
@@ -78,6 +91,8 @@ public class OrderNegativeTest extends BaseTest {
                         equalTo("User with id '999999' not found"));
     }
     
+	@Story("Negative order Management")
+	@Severity(SeverityLevel.CRITICAL)
     @Test
     public void verifyApiBehaviorForInvalidQuantity() {
 
@@ -98,6 +113,8 @@ public class OrderNegativeTest extends BaseTest {
                 .log().all();
     }
     
+	@Story("Negative order Management")
+	@Severity(SeverityLevel.CRITICAL)
     @Test
     public void validateInvalidQuantityBusinessRule() {
 

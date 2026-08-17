@@ -1,13 +1,25 @@
 package com.ecommerce.api.tests.payment;
 
 import org.testng.Assert;
+
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
+
 import org.testng.annotations.Test;
 
 import com.ecommerce.api.testdata.payment.PaymentTestData;
 import com.ecommerce.api.utils.PaymentBusinessValidator;
 
+@Epic("E-Commerce API")
+@Feature("Payment Validation")
 public class PaymentValidationTest {
 
+	@Story("Payment Validation")
+	@Severity(SeverityLevel.CRITICAL)
     @Test
     public void validateValidPaymentMethod() {
 
@@ -15,6 +27,8 @@ public class PaymentValidationTest {
                 PaymentTestData.VALID_PAYMENT_METHOD);
     }
     
+	@Story("Payment Validation")
+	@Severity(SeverityLevel.CRITICAL)
     @Test
     public void validateValidPaymentAmount() {
 
@@ -22,6 +36,8 @@ public class PaymentValidationTest {
                 PaymentTestData.VALID_AMOUNT);
     }
     
+	@Story("Payment Validation")
+	@Severity(SeverityLevel.CRITICAL)
     @Test
     public void validateInvalidPaymentMethod() {
 

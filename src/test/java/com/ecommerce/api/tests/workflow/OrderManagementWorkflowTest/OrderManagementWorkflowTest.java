@@ -1,6 +1,14 @@
 package com.ecommerce.api.tests.workflow.OrderManagementWorkflowTest;
 
 import static org.hamcrest.Matchers.equalTo;
+
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
+
 import static org.hamcrest.Matchers.notNullValue;
 
 import java.util.Arrays;
@@ -22,6 +30,9 @@ import com.ecommerce.api.utils.ResponseValidator;
 
 import io.restassured.response.Response;
 
+@Epic("E-Commerce API")
+@Feature("Order Management")
+@Story("End-to-End Order Workflow")
 public class OrderManagementWorkflowTest extends BaseTest {
 
     private AuthApi authApi;
@@ -36,6 +47,8 @@ public class OrderManagementWorkflowTest extends BaseTest {
         orderApi = new OrderApi(requestSpec);
     }
     
+    @Story("End-to-End Order Workflow")
+    @Severity(SeverityLevel.CRITICAL)
     //login test
     @Test(priority = 1,groups = "smoke")
     public void login() {
@@ -55,6 +68,8 @@ public class OrderManagementWorkflowTest extends BaseTest {
                 .getString("accessToken");
     }
     
+    @Story("End-to-End Order Workflow")
+    @Severity(SeverityLevel.CRITICAL)
     //add authenticated user verification
     @Test(priority = 2, dependsOnMethods = "login")
     public void verifyAuthenticatedUser() {
@@ -86,6 +101,8 @@ public class OrderManagementWorkflowTest extends BaseTest {
         return orderRequest;
     }
     
+    @Story("End-to-End Order Workflow")
+    @Severity(SeverityLevel.CRITICAL)
     //Add create order
     @Test(priority = 3, dependsOnMethods = "verifyAuthenticatedUser",groups = {"smoke","regression"})
     public void createOrder() {
@@ -106,6 +123,8 @@ public class OrderManagementWorkflowTest extends BaseTest {
                 .body("products", notNullValue());
     }
     
+    @Story("End-to-End Order Workflow")
+    @Severity(SeverityLevel.CRITICAL)
     //add payment validation
     @Test(priority = 4, dependsOnMethods = "createOrder")
     public void validatePayment() {
@@ -115,6 +134,8 @@ public class OrderManagementWorkflowTest extends BaseTest {
         PaymentBusinessValidator.validateAmount(99.99);
     }
     
+    @Story("End-to-End Order Workflow")
+    @Severity(SeverityLevel.CRITICAL)
     //retrive created order
     @Test(priority = 5, dependsOnMethods = "createOrder")
     public void verifyCreatedOrder() {
@@ -129,6 +150,8 @@ public class OrderManagementWorkflowTest extends BaseTest {
                 .body("products", notNullValue());
     }
     
+    @Story("End-to-End Order Workflow")
+    @Severity(SeverityLevel.CRITICAL)
     //update the order
     @Test(priority = 6, dependsOnMethods = "verifyCreatedOrder")
     public void updateAndValidateOrder() {

@@ -2,6 +2,13 @@ package com.ecommerce.api.tests.auth;
 
 import static org.hamcrest.Matchers.*;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
+
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -13,6 +20,8 @@ import com.ecommerce.api.utils.ResponseValidator;
 
 import io.restassured.response.Response;
 
+@Epic("E-Commerce API")
+@Feature("Authentication")
 public class AuthApiTest extends BaseTest {
 
     private AuthApi authApi;
@@ -23,6 +32,9 @@ public class AuthApiTest extends BaseTest {
         authApi = new AuthApi(requestSpec);
     }
     
+    @Story("User login")
+    @Severity(SeverityLevel.BLOCKER)
+    @Description("Verify successful user login")
     @Test(priority = 1)
     public void login() {
 
@@ -41,6 +53,9 @@ public class AuthApiTest extends BaseTest {
         accessToken = response.jsonPath().getString("accessToken");
     }
     
+    @Story("User Authentication")
+    @Severity(SeverityLevel.BLOCKER)
+    @Description("Verify successful user authentication")
     @Test(priority = 2, dependsOnMethods = "login")
     public void getAuthenticatedUser() {
 
