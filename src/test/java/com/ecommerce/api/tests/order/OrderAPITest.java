@@ -35,8 +35,9 @@ public class OrderAPITest extends BaseTest {
         orderApi = new OrderApi(requestSpec);
     }
     
-    @Story("Order Management")
+    @Story("Get Orders")
     @Severity(SeverityLevel.CRITICAL)
+    @Description("Verify get all orders")
     @Test(priority = 1)
     public void getAllOrders() {
 
@@ -48,8 +49,9 @@ public class OrderAPITest extends BaseTest {
                 .body("carts", notNullValue());
     }
     
-    @Story("Order Management")
+    @Story("get order using orderID")
     @Severity(SeverityLevel.CRITICAL)
+    @Description("verify get order by using ID")
     @Test(priority = 2)
     public void getOrderById() {
 
@@ -66,8 +68,9 @@ public class OrderAPITest extends BaseTest {
                 .body("totalQuantity", notNullValue());
     }
     
-    @Story("Order Management")
+    @Story("Create order")
     @Severity(SeverityLevel.CRITICAL)
+    @Description("verify order creating successfully")
     @Test(priority = 3)
     public void createOrder() {
 
@@ -93,8 +96,9 @@ public class OrderAPITest extends BaseTest {
 		        .body("totalQuantity", equalTo(OrderTestData.PRODUCT_QUANTITY));
     }
     
-    @Story("Order Management")
+    @Story("Update Order")
     @Severity(SeverityLevel.CRITICAL)
+    @Description("Verify order updating successfully")
     @Test(priority = 4)
     public void updateOrder() {
     	

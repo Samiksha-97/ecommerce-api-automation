@@ -27,8 +27,9 @@ public class PaymentValidationTest {
                 PaymentTestData.VALID_PAYMENT_METHOD);
     }
     
-	@Story("Payment Validation")
+	@Story("Payment valid amount")
 	@Severity(SeverityLevel.CRITICAL)
+	@Description("Verify valid payment amount")
     @Test
     public void validateValidPaymentAmount() {
 
@@ -36,8 +37,9 @@ public class PaymentValidationTest {
                 PaymentTestData.VALID_AMOUNT);
     }
     
-	@Story("Payment Validation")
+	@Story("Inalid payment method")
 	@Severity(SeverityLevel.CRITICAL)
+	@Description("Verify invalid payment method")
     @Test
     public void validateInvalidPaymentMethod() {
 

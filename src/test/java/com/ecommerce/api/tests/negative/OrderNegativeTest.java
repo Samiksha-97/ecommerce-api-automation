@@ -46,8 +46,9 @@ public class OrderNegativeTest extends BaseTest {
 	    orderApi = new OrderApi(negativeRequestSpec);
 	}
 	
-	@Story("Negative order Management")
+	@Story("get order with invalid ID")
 	@Severity(SeverityLevel.CRITICAL)
+	@Description("Verify get order with invalid ID")
     @Test
     public void getOrderWithInvalidId() {
 
@@ -66,8 +67,9 @@ public class OrderNegativeTest extends BaseTest {
      * This is a mock API limitation.
      * Business validation is handled separately by OrderBusinessValidator.
      */
-	@Story("Negative order Management")
+	@Story("Create order with invalid ID")
 	@Severity(SeverityLevel.CRITICAL)
+	@Description("Verify create order with invalid ID")
     @Test
     public void createOrderWithInvalidUserId() {
 
@@ -91,8 +93,9 @@ public class OrderNegativeTest extends BaseTest {
                         equalTo("User with id '999999' not found"));
     }
     
-	@Story("Negative order Management")
+	@Story("API behaviour with invalid ID")
 	@Severity(SeverityLevel.CRITICAL)
+	@Description("Verify API behaviour with invalid ID")
     @Test
     public void verifyApiBehaviorForInvalidQuantity() {
 
@@ -113,8 +116,9 @@ public class OrderNegativeTest extends BaseTest {
                 .log().all();
     }
     
-	@Story("Negative order Management")
+	@Story("Invalid quantity")
 	@Severity(SeverityLevel.CRITICAL)
+	@Description("Verify invalid quantity - business rule")
     @Test
     public void validateInvalidQuantityBusinessRule() {
 

@@ -25,8 +25,9 @@ public class ProductAPITest extends BaseTest{
 	
 	private ProductApi productApi;
 	
-	@Story("Product Management")
+	@Story("Get Product")
 	@Severity(SeverityLevel.CRITICAL)
+	@Description("Verify getting all product successfully")
 	@Test(priority = 1)
 	public void getAllProducts() {
 
@@ -65,8 +66,9 @@ public class ProductAPITest extends BaseTest{
 	        .body("limit", greaterThan(0));
 	}
 	
-	@Story("Product Management")
+	@Story("Get Product using ID")
 	@Severity(SeverityLevel.CRITICAL)
+	@Description("Verify getting product details using ID successfully")
 	@Test(priority = 2)
 	public void getProductById() {
 
@@ -85,8 +87,9 @@ public class ProductAPITest extends BaseTest{
 	            .body("category", notNullValue());
 	}
 	
-	@Story("Product Management")
+	@Story("Create Product")
 	@Severity(SeverityLevel.CRITICAL)
+	@Description("Verify creating product successfully")
 	@Test(priority = 3)
 	public void createProduct() {
 
@@ -110,8 +113,9 @@ public class ProductAPITest extends BaseTest{
 	        .body("description", equalTo(ProductTestData.PRODUCT_DESCRIPTION));
 	}
 	
-	@Story("Product Management")
+	@Story("Update Product")
 	@Severity(SeverityLevel.CRITICAL)
+	@Description("Verify updating product successfully")
 	@Test(priority =4)
 	public void updateProduct() {
 
@@ -137,8 +141,9 @@ public class ProductAPITest extends BaseTest{
 	        .body("category", equalTo(ProductTestData.UPDATED_PRODUCT_CATEGORY));
 	}
 	
-	@Story("Product Management")
+	@Story("Delete Product")
 	@Severity(SeverityLevel.CRITICAL)
+	@Description("Verify deleting product successfully")
 	@Test(priority =5)
 	public void deleteProduct() {
 		

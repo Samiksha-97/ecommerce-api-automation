@@ -31,8 +31,7 @@ import com.ecommerce.api.utils.ResponseValidator;
 import io.restassured.response.Response;
 
 @Epic("E-Commerce API")
-@Feature("Order Management")
-@Story("End-to-End Order Workflow")
+@Feature("End-to-End Order Workflow")
 public class OrderManagementWorkflowTest extends BaseTest {
 
     private AuthApi authApi;
@@ -47,8 +46,9 @@ public class OrderManagementWorkflowTest extends BaseTest {
         orderApi = new OrderApi(requestSpec);
     }
     
-    @Story("End-to-End Order Workflow")
+    @Story("End-to-End Order Workflow - Login user")
     @Severity(SeverityLevel.CRITICAL)
+    @Description("Verify user login successfully")
     //login test
     @Test(priority = 1,groups = "smoke")
     public void login() {
@@ -68,8 +68,9 @@ public class OrderManagementWorkflowTest extends BaseTest {
                 .getString("accessToken");
     }
     
-    @Story("End-to-End Order Workflow")
+    @Story("End-to-End Order Workflow - check authentication")
     @Severity(SeverityLevel.CRITICAL)
+    @Description("Verify logged user authentication")
     //add authenticated user verification
     @Test(priority = 2, dependsOnMethods = "login")
     public void verifyAuthenticatedUser() {
@@ -101,8 +102,9 @@ public class OrderManagementWorkflowTest extends BaseTest {
         return orderRequest;
     }
     
-    @Story("End-to-End Order Workflow")
+    @Story("End-to-End Order Workflow - create order")
     @Severity(SeverityLevel.CRITICAL)
+    @Description("Verify order creating successfully")
     //Add create order
     @Test(priority = 3, dependsOnMethods = "verifyAuthenticatedUser",groups = {"smoke","regression"})
     public void createOrder() {
@@ -123,8 +125,9 @@ public class OrderManagementWorkflowTest extends BaseTest {
                 .body("products", notNullValue());
     }
     
-    @Story("End-to-End Order Workflow")
+    @Story("End-to-End Order Workflow - valid payment")
     @Severity(SeverityLevel.CRITICAL)
+    @Description("Verify payment validation is successfull")
     //add payment validation
     @Test(priority = 4, dependsOnMethods = "createOrder")
     public void validatePayment() {
@@ -134,8 +137,9 @@ public class OrderManagementWorkflowTest extends BaseTest {
         PaymentBusinessValidator.validateAmount(99.99);
     }
     
-    @Story("End-to-End Order Workflow")
+    @Story("End-to-End Order Workflow - created order retrive")
     @Severity(SeverityLevel.CRITICAL)
+    @Description("Verify retriveing created order successfully")
     //retrive created order
     @Test(priority = 5, dependsOnMethods = "createOrder")
     public void verifyCreatedOrder() {
@@ -150,8 +154,9 @@ public class OrderManagementWorkflowTest extends BaseTest {
                 .body("products", notNullValue());
     }
     
-    @Story("End-to-End Order Workflow")
+    @Story("End-to-End Order Workflow - update and validate order")
     @Severity(SeverityLevel.CRITICAL)
+    @Description("Verify updating order successfully and validating it.")
     //update the order
     @Test(priority = 6, dependsOnMethods = "verifyCreatedOrder")
     public void updateAndValidateOrder() {

@@ -33,8 +33,9 @@ public class UserApiTest extends BaseTest {
         userApi = new UserApi(requestSpec);
     }
     
-    @Story("User Management")
+    @Story("Get User")
     @Severity(SeverityLevel.CRITICAL)
+    @Description("Verify getting all users successfully")
     @Test(priority = 1)
     public void getAllUsers() {
 
@@ -46,8 +47,9 @@ public class UserApiTest extends BaseTest {
                 .body("size()", notNullValue());
     }
     
-    @Story("User Management")
+    @Story("Get User By ID")
     @Severity(SeverityLevel.CRITICAL)
+    @Description("Verify getting user by ID successfully")
     @Test(priority = 2)
     public void getUserById() {
 
@@ -62,8 +64,9 @@ public class UserApiTest extends BaseTest {
                 .body("email", notNullValue());
     }
     
-    @Story("User Management")
+    @Story("Create User")
     @Severity(SeverityLevel.CRITICAL)
+    @Description("Verify creating user successfully")
     @Test(priority = 3)
     public void createUser() {
 
@@ -81,8 +84,9 @@ public class UserApiTest extends BaseTest {
                 .body("id", notNullValue());
     }
     
-    @Story("User Management")
+    @Story("Update User")
     @Severity(SeverityLevel.CRITICAL)
+    @Description("Verify updating user successfully")
     @Test(priority = 4)
     public void updateUser() {
 
@@ -103,8 +107,9 @@ public class UserApiTest extends BaseTest {
                 .body("password", equalTo(UserTestData.UPDATED_PASSWORD));
     }
     
-    @Story("User Management")
+    @Story("Delete User")
     @Severity(SeverityLevel.CRITICAL)
+    @Description("Verify deleting user successfully")
     @Test(priority = 5)
     public void deleteUser() {
 
