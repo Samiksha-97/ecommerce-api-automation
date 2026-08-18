@@ -26,7 +26,7 @@ public class AuthenticationNegativeTest extends BaseTest {
 
     private AuthApi authApi;
 
-    @BeforeClass
+    @BeforeClass(alwaysRun = true)
     public void setupAuthApi() {
         authApi = new AuthApi(requestSpec);
     }
@@ -34,7 +34,7 @@ public class AuthenticationNegativeTest extends BaseTest {
     @Story("Negative Authentication")
     @Severity(SeverityLevel.CRITICAL)
     @Description("Verify authentication fails with invalid credentials")
-    @Test
+    @Test(groups = {"regression"})
     public void getAuthenticatedUserWithInvalidToken() {
 
         Response response =

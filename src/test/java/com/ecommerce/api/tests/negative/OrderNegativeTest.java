@@ -33,7 +33,7 @@ public class OrderNegativeTest extends BaseTest {
 
 	private OrderApi orderApi;
 
-	@BeforeClass
+	@BeforeClass(alwaysRun = true)
 	public void setupOrderApi() {
 
 	    RestAssured.baseURI = Environment.BASE_URL;
@@ -49,7 +49,7 @@ public class OrderNegativeTest extends BaseTest {
 	@Story("get order with invalid ID")
 	@Severity(SeverityLevel.CRITICAL)
 	@Description("Verify get order with invalid ID")
-    @Test
+    @Test(groups = {"regression"})
     public void getOrderWithInvalidId() {
 
         Response response =
@@ -70,7 +70,7 @@ public class OrderNegativeTest extends BaseTest {
 	@Story("Create order with invalid ID")
 	@Severity(SeverityLevel.CRITICAL)
 	@Description("Verify create order with invalid ID")
-    @Test
+    @Test(groups = {"regression"})
     public void createOrderWithInvalidUserId() {
 
         OrderProduct orderProduct = new OrderProduct();
@@ -96,7 +96,7 @@ public class OrderNegativeTest extends BaseTest {
 	@Story("API behaviour with invalid ID")
 	@Severity(SeverityLevel.CRITICAL)
 	@Description("Verify API behaviour with invalid ID")
-    @Test
+    @Test(groups = {"regression"})
     public void verifyApiBehaviorForInvalidQuantity() {
 
         OrderProduct orderProduct = new OrderProduct();
@@ -119,7 +119,7 @@ public class OrderNegativeTest extends BaseTest {
 	@Story("Invalid quantity")
 	@Severity(SeverityLevel.CRITICAL)
 	@Description("Verify invalid quantity - business rule")
-    @Test
+    @Test(groups = {"regression"})
     public void validateInvalidQuantityBusinessRule() {
 
         int quantity = -1;

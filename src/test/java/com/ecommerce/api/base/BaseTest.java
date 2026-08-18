@@ -6,13 +6,12 @@ import com.ecommerce.api.config.RequestSpecFactory;
 import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
 
-import org.testng.annotations.BeforeTest;
-
+import org.testng.annotations.BeforeSuite;
 public class BaseTest {
 
-    protected RequestSpecification requestSpec;
+    protected static RequestSpecification requestSpec;
 
-    @BeforeTest
+    @BeforeSuite(alwaysRun = true)
     public void setup() {
 
         RestAssured.baseURI = Environment.BASE_URL;

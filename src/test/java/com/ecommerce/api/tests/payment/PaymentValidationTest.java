@@ -20,7 +20,7 @@ public class PaymentValidationTest {
 
 	@Story("Payment Validation")
 	@Severity(SeverityLevel.CRITICAL)
-    @Test
+    @Test(groups = {"regression"})
     public void validateValidPaymentMethod() {
 
         PaymentBusinessValidator.validatePaymentMethod(
@@ -30,7 +30,7 @@ public class PaymentValidationTest {
 	@Story("Payment valid amount")
 	@Severity(SeverityLevel.CRITICAL)
 	@Description("Verify valid payment amount")
-    @Test
+    @Test(groups = {"regression"})
     public void validateValidPaymentAmount() {
 
         PaymentBusinessValidator.validateAmount(
@@ -40,7 +40,7 @@ public class PaymentValidationTest {
 	@Story("Inalid payment method")
 	@Severity(SeverityLevel.CRITICAL)
 	@Description("Verify invalid payment method")
-    @Test
+    @Test(groups = {"regression"})
     public void validateInvalidPaymentMethod() {
 
         try {

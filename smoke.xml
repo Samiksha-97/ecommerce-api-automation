@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="ECommerce API Smoke Suite" parallel="false">
+
+    <groups>
+        <run>
+            <include name="smoke"/>
+        </run>
+    </groups>
+
+    <test name="Smoke Tests">
+        <packages>
+            <package name="com.ecommerce.api.tests.auth"/>
+            <package name="com.ecommerce.api.tests.order"/>
+            <package name="com.ecommerce.api.tests.products"/>
+            <package name="com.ecommerce.api.tests.user"/>
+        </packages>
+    </test>
+
+</suite>

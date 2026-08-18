@@ -17,6 +17,7 @@
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <allure.version>2.35.3</allure.version>
+        <suiteXmlFile>testng.xml</suiteXmlFile>
     </properties>
 
     <dependencies>
@@ -69,11 +70,11 @@
 	            <artifactId>maven-surefire-plugin</artifactId>
 	            <version>3.5.3</version>
 	
-	            <configuration>
-	                <suiteXmlFiles>
-	                    <suiteXmlFile>testng.xml</suiteXmlFile>
-	                </suiteXmlFiles>
-	            </configuration>
+				<configuration>
+			        <suiteXmlFiles>
+			            <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
+			        </suiteXmlFiles>
+			    </configuration>
 	        </plugin>
 	
 	    </plugins>

@@ -28,7 +28,7 @@ public class ProductAPITest extends BaseTest{
 	@Story("Get Product")
 	@Severity(SeverityLevel.CRITICAL)
 	@Description("Verify getting all product successfully")
-	@Test(priority = 1)
+	@Test(priority = 1,groups = {"smoke", "regression"})
 	public void getAllProducts() {
 
 	    productApi = new ProductApi(requestSpec);
@@ -69,7 +69,7 @@ public class ProductAPITest extends BaseTest{
 	@Story("Get Product using ID")
 	@Severity(SeverityLevel.CRITICAL)
 	@Description("Verify getting product details using ID successfully")
-	@Test(priority = 2)
+	@Test(priority = 2,groups = {"smoke", "regression"})
 	public void getProductById() {
 
 	    productApi = new ProductApi(requestSpec);
@@ -90,7 +90,7 @@ public class ProductAPITest extends BaseTest{
 	@Story("Create Product")
 	@Severity(SeverityLevel.CRITICAL)
 	@Description("Verify creating product successfully")
-	@Test(priority = 3)
+	@Test(priority = 3,groups = {"regression"})
 	public void createProduct() {
 
 	    ProductRequest pr = new ProductRequest();
@@ -116,7 +116,7 @@ public class ProductAPITest extends BaseTest{
 	@Story("Update Product")
 	@Severity(SeverityLevel.CRITICAL)
 	@Description("Verify updating product successfully")
-	@Test(priority =4)
+	@Test(priority =4,groups = {"regression"})
 	public void updateProduct() {
 
 	    ProductRequest productRequest = new ProductRequest();
@@ -144,7 +144,7 @@ public class ProductAPITest extends BaseTest{
 	@Story("Delete Product")
 	@Severity(SeverityLevel.CRITICAL)
 	@Description("Verify deleting product successfully")
-	@Test(priority =5)
+	@Test(priority =5,groups = {"regression"})
 	public void deleteProduct() {
 		
 		productApi = new ProductApi(requestSpec);

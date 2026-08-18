@@ -28,7 +28,7 @@ public class UserApiTest extends BaseTest {
 
     private UserApi userApi;
 
-    @BeforeClass
+    @BeforeClass(alwaysRun = true)
     public void setupUserApi() {
         userApi = new UserApi(requestSpec);
     }
@@ -36,7 +36,7 @@ public class UserApiTest extends BaseTest {
     @Story("Get User")
     @Severity(SeverityLevel.CRITICAL)
     @Description("Verify getting all users successfully")
-    @Test(priority = 1)
+    @Test(priority = 1,groups = {"smoke", "regression"})
     public void getAllUsers() {
 
         Response response = userApi.getAllUsers();
@@ -50,7 +50,7 @@ public class UserApiTest extends BaseTest {
     @Story("Get User By ID")
     @Severity(SeverityLevel.CRITICAL)
     @Description("Verify getting user by ID successfully")
-    @Test(priority = 2)
+    @Test(priority = 2,groups = {"smoke", "regression"})
     public void getUserById() {
 
         Response response =
@@ -67,7 +67,7 @@ public class UserApiTest extends BaseTest {
     @Story("Create User")
     @Severity(SeverityLevel.CRITICAL)
     @Description("Verify creating user successfully")
-    @Test(priority = 3)
+    @Test(priority = 3,groups = {"regression"})
     public void createUser() {
 
         UserRequest userRequest = new UserRequest();
@@ -87,7 +87,7 @@ public class UserApiTest extends BaseTest {
     @Story("Update User")
     @Severity(SeverityLevel.CRITICAL)
     @Description("Verify updating user successfully")
-    @Test(priority = 4)
+    @Test(priority = 4,groups = {"regression"})
     public void updateUser() {
 
         UserRequest userRequest = new UserRequest();
@@ -110,7 +110,7 @@ public class UserApiTest extends BaseTest {
     @Story("Delete User")
     @Severity(SeverityLevel.CRITICAL)
     @Description("Verify deleting user successfully")
-    @Test(priority = 5)
+    @Test(priority = 5,groups = {"regression"})
     public void deleteUser() {
 
         Response response =

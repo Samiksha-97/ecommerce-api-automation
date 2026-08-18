@@ -30,7 +30,7 @@ public class OrderAPITest extends BaseTest {
 
     private OrderApi orderApi;
 
-    @BeforeClass
+    @BeforeClass(alwaysRun = true)
     public void setupOrderApi() {
         orderApi = new OrderApi(requestSpec);
     }
@@ -38,7 +38,7 @@ public class OrderAPITest extends BaseTest {
     @Story("Get Orders")
     @Severity(SeverityLevel.CRITICAL)
     @Description("Verify get all orders")
-    @Test(priority = 1)
+    @Test(priority = 1,groups = {"smoke", "regression"})
     public void getAllOrders() {
 
         Response response = orderApi.getAllOrders();
@@ -52,7 +52,7 @@ public class OrderAPITest extends BaseTest {
     @Story("get order using orderID")
     @Severity(SeverityLevel.CRITICAL)
     @Description("verify get order by using ID")
-    @Test(priority = 2)
+    @Test(priority = 2,groups = {"smoke", "regression"})
     public void getOrderById() {
 
         Response response =
@@ -71,7 +71,7 @@ public class OrderAPITest extends BaseTest {
     @Story("Create order")
     @Severity(SeverityLevel.CRITICAL)
     @Description("verify order creating successfully")
-    @Test(priority = 3)
+    @Test(priority = 3,groups = {"smoke", "regression"})
     public void createOrder() {
 
         OrderProduct orderProduct = new OrderProduct();
@@ -99,7 +99,7 @@ public class OrderAPITest extends BaseTest {
     @Story("Update Order")
     @Severity(SeverityLevel.CRITICAL)
     @Description("Verify order updating successfully")
-    @Test(priority = 4)
+    @Test(priority = 4,groups = {"smoke", "regression"})
     public void updateOrder() {
     	
         OrderProduct orderProduct = new OrderProduct();

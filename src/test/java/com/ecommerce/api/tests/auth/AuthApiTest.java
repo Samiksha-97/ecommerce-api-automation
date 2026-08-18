@@ -27,15 +27,16 @@ public class AuthApiTest extends BaseTest {
     private AuthApi authApi;
     private String accessToken;
 
-    @BeforeClass
+    @BeforeClass(alwaysRun = true)
     public void setupAuthApi() {
         authApi = new AuthApi(requestSpec);
     }
     
+    
     @Story("User login")
     @Severity(SeverityLevel.BLOCKER)
     @Description("Verify successful user login")
-    @Test(priority = 1)
+    @Test(priority = 1, groups = {"smoke", "regression"})
     public void login() {
 
         LoginRequest loginRequest = new LoginRequest();
@@ -56,9 +57,9 @@ public class AuthApiTest extends BaseTest {
     @Story("User Authentication")
     @Severity(SeverityLevel.BLOCKER)
     @Description("Verify successful user authentication")
-    @Test(priority = 2, dependsOnMethods = "login")
+    @Test(priority = 2, dependsOnMethods = "login", groups = {"smoke", "regression"})
     public void getAuthenticatedUser() {
-
+    	
         Response response =
                 authApi.getAuthenticatedUser(accessToken);
 
